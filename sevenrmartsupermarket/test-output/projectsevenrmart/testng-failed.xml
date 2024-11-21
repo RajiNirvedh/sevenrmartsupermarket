@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="6" parallel="tests" name="Failed suite [projectsevenrmart]">
+  <listeners>
+    <listener class-name="sevenrmartsupermarket_listeners.ExtentReporter"/>
+  </listeners>
+  <test thread-count="6" parallel="tests" name="smoke_test(failed)">
+    <classes>
+      <class name="sevenrmartsupermarket_tests.LoginTest">
+        <methods>
+          <include name="verifyAlertMessageOfInvalidUserLogin" invocation-numbers="0 1 2"/>
+          <include name="launchBrowser"/>
+          <include name="terminateBrowser"/>
+        </methods>
+      </class> <!-- sevenrmartsupermarket_tests.LoginTest -->
+    </classes>
+  </test> <!-- smoke_test(failed) -->
+  <test thread-count="6" parallel="tests" name="basicsmoketest(failed)">
+    <classes>
+      <class name="sevenrmartsupermarket_tests.LoginTest">
+        <methods>
+          <include name="verifyAlertMessageOfInvalidUserLogin" invocation-numbers="0 1 2"/>
+          <include name="launchBrowser"/>
+          <include name="terminateBrowser"/>
+        </methods>
+      </class> <!-- sevenrmartsupermarket_tests.LoginTest -->
+    </classes>
+  </test> <!-- basicsmoketest(failed) -->
+  <test thread-count="6" parallel="tests" name="smoketest(failed)">
+    <classes>
+      <class name="sevenrmartsupermarket_tests.LoginTest">
+        <methods>
+          <include name="verifyAlertMessageOfInvalidUserLogin" invocation-numbers="0 1 2"/>
+          <include name="launchBrowser"/>
+          <include name="terminateBrowser"/>
+        </methods>
+      </class> <!-- sevenrmartsupermarket_tests.LoginTest -->
+    </classes>
+  </test> <!-- smoketest(failed) -->
+</suite> <!-- Failed suite [projectsevenrmart] -->
