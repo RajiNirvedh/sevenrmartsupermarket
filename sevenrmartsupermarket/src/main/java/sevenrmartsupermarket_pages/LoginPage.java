@@ -27,6 +27,8 @@ public class LoginPage {
 	private WebElement alerttext;
 	@FindBy(xpath="//div//a[@class='d-block']")
 	private WebElement signinperson;
+	@FindBy(xpath="//p[@class='login-box-msg']")
+	private WebElement loginBoxText;
 	
 	
 	public LoginPage(WebDriver driver)
@@ -39,6 +41,7 @@ public class LoginPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void enterUserName(String userName)
@@ -57,11 +60,12 @@ public class LoginPage {
 		signInButton.click();
 	}
 	
-	public void login(String userName,String password)
+	public HomePage login(String userName,String password)
 	{
 		enterUserName(userName);
 		enterPassword(password);
 		clickSignInButton();
+		return new HomePage(driver);
 		
 	}
 	
@@ -90,6 +94,12 @@ public class LoginPage {
 	public String loginPageText()
 	{
 		return loginPageText.getText();
+	}
+	
+	public String loginBoxText()
+	{
+		return loginBoxText.getText();
+		
 	}
 	
 	public boolean isSignInButtonEnabled()

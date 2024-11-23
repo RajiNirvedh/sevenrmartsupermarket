@@ -18,7 +18,7 @@
 					<version>3.5.2</version>
 					<configuration>
 						<suiteXmlFiles>>
-							<File>src/main/resources/groups.xml</File>
+							<file>src/main/resources/groups.xml</file>
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>

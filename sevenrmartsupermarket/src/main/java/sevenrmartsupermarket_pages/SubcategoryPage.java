@@ -1,45 +1,51 @@
 package sevenrmartsupermarket_pages;
 
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
+import java.util.List;
+
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import sevenrmartsupermarket_constants.Constants;
+
 import sevenrmartsupermarket_utilities.GeneralUtility;
 import sevenrmartsupermarket_utilities.PageUtility;
 
 public class SubcategoryPage {
 	WebDriver driver;
 	GeneralUtility generalutility=new GeneralUtility();
+	
+	
 	@FindBy(xpath="//a[@onclick='click_button(2)']")
-	WebElement serachicon;
+	private WebElement serachicon;
 	@FindBy(xpath="//select[@class='form-control selectpicker']")
-	WebElement categorydropdown;
+	private WebElement categorydropdown;
 	@FindBy(xpath="//input[@placeholder='Sub Category']")
-	WebElement subCategory;
+	private WebElement subCategory;
 	@FindBy(xpath="//button[@class='btn btn-danger btn-fix']")
-	WebElement searchButton;
+	private WebElement searchButton;
 	@FindBy(xpath="//span[@id='res']//center")
-	WebElement invalidsearchResult;
+	private WebElement invalidsearchResult;
 	@FindBy(xpath="//a[@class='btn btn-rounded btn-danger']")
-	WebElement newButton;
+	private WebElement newButton;
 	@FindBy(xpath="//input[@placeholder='Enter the Subcategory']")
-	WebElement addSubcategory;
+	private WebElement addSubcategory;
 	@FindBy(xpath="//button[@type='submit']")
-	WebElement saveButton;
+	private WebElement saveButton;
 	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']//h5")
-	WebElement saveAlert;
+	private WebElement saveAlert;
 	@FindBy(xpath="//span[contains(text(),'Active')]")
-	WebElement activeIcon;
-	////tbody//tr//td[1]
+	private WebElement activeIcon;
 	@FindBy(xpath="//tbody//tr//td[1]")
-	List<WebElement> categoryupdation;
+	private List<WebElement> categorylisttable;
+	@FindBy(xpath="//button[contains(text(),'Update')]")
+	private WebElement updateButton;
+	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
+	private WebElement updateAlert;
+
 
 	
 	public SubcategoryPage(WebDriver driver)
@@ -103,13 +109,27 @@ public class SubcategoryPage {
 		return saveAlert.getText();
 	}
 	
-	//public String updateExistingSubcategory(String subCategory)
+	public String updateExistingSubcategory(String subCategory,String newSubCategory)
 	{
-		generalutility.getTextOfElements(categoryupdation);
-		////tbody//tr[2]//td[5]//a[1]
-	
-		//return
-	}
+		generalutility.getTextOfElements(categorylisttable);
+		int count=generalutility.getTextOfElements(categorylisttable).size();
+		for(int i=0;i<count;i++)
+		{
+				boolean condition=generalutility.getTextOfElements(categorylisttable).get(i).contentEquals(subCategory);
+				if(condition==true)
+				{
+					WebElement updatebutton=driver.findElement(By.xpath("//tbody//tr["+i+"]//td[5]//a[1]"));
+					//pageutility.jsClick(updatebutton);
+					updatebutton.click();
+					addSubcategory.click();
+					addSubcategory.clear();
+					addSubcategory.sendKeys(newSubCategory);
+					updateButton.click();
+				}
+				}
+				return updateAlert.getText();
+		}
+		
 	
 	public String getActiveStatusIconBackgroundcolor()
 	{

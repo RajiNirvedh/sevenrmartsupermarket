@@ -15,12 +15,22 @@ public class HomeTest extends Base{
 	
 	public void verifyWhetherLogoIsDisplayed()
 	{
-		homepage = new HomePage(driver);
+		
 		loginpage = new LoginPage(driver);
-		loginpage.login();
+		homepage=loginpage.login("admin","admin");
 		boolean actualResult=homepage.isLogoDisplayed();
 		Assert.assertEquals(actualResult, true);
+	}
+	
+	@Test
+	public void verifyUserIsSuccessfullyLoggedOutAndDirectedToLoginPage()
+	{
 		
+		loginpage = new LoginPage(driver);
+		homepage=loginpage.login("admin","admin");
+		homepage.clickLogoutButton();
+		String actualLoginBoxText=loginpage.loginBoxText();
+		Assert.assertEquals(actualLoginBoxText, "Sign in to start your session");
 	}
 	
 

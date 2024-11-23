@@ -22,9 +22,8 @@ public class SubcategoryTest extends Base{
 	public void verifySubCategoryListUsingSearchButton()
 	{
 		loginpage=new LoginPage(driver);
-		homepage=new HomePage(driver);
 		subcategorypage=new SubcategoryPage(driver);
-		loginpage.login();
+		homepage=loginpage.login("admin","admin");
 		homepage.clickSubCategory();
 		subcategorypage.searchSubCategory("Electronics", "Apple141124031848");
 		String actualSearchResult=subcategorypage.getSearchResult();
@@ -35,9 +34,8 @@ public class SubcategoryTest extends Base{
 	public void verifyInvalidSearchOnSubcategoryList()
 	{
 		loginpage=new LoginPage(driver);
-		homepage=new HomePage(driver);
 		subcategorypage=new SubcategoryPage(driver);
-		loginpage.login();
+		homepage=loginpage.login("admin","admin");
 		homepage.clickSubCategory();
 		subcategorypage.searchSubCategory("Electronics", "SamsungS20");
 		String actualSearchResult=subcategorypage.getInvalidSearchResult();
@@ -49,9 +47,8 @@ public class SubcategoryTest extends Base{
 	public void verifyaddingNewSubcategory(String subcategory,String category)
 	{
 		loginpage=new LoginPage(driver);
-		homepage=new HomePage(driver);
 		subcategorypage=new SubcategoryPage(driver);
-		loginpage.login();
+		homepage=loginpage.login("admin","admin");
 		homepage.clickSubCategory();
 		String actualAlertText=subcategorypage.addNewSubcategory(subcategory,category);
 		Assert.assertEquals(actualAlertText, "Alert!");
@@ -62,12 +59,22 @@ public class SubcategoryTest extends Base{
 	public void verifyTheColorOfActiveSubCategoryListIcon()
 	{
 		loginpage=new LoginPage(driver);
-		homepage=new HomePage(driver);
 		subcategorypage=new SubcategoryPage(driver);
-		loginpage.login();
+		homepage=loginpage.login("admin","admin");
 		homepage.clickSubCategory();
 		String actualIconColor=subcategorypage.getActiveStatusIconBackgroundcolor();
 		Assert.assertEquals(actualIconColor, "rgba(40, 167, 69, 1)");
+	}
+	
+	@Test
+	public void verifysubCategoryUpdation()
+	{
+		loginpage=new LoginPage(driver);
+		subcategorypage=new SubcategoryPage(driver);
+		homepage=loginpage.login("admin","admin");
+		homepage.clickSubCategory();
+		String actualAlert=subcategorypage.updateExistingSubcategory("rrrBeans","Beans");
+		Assert.assertEquals(actualAlert, "Alert!");
 	}
 	
 	

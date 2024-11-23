@@ -1,13 +1,9 @@
 package sevenrmartsupermarket_pages;
 
-import java.io.FileInputStream;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import sevenrmartsupermarket_constants.Constants;
 
 public class HomePage {
 	WebDriver driver;
@@ -16,8 +12,13 @@ public class HomePage {
 	private WebElement profileName;
 	@FindBy(xpath="//img[@alt='AdminLTE Logo']")
 	private WebElement logo;
+	@FindBy(xpath="//a//img[@alt='User Image']")
+	private WebElement adminlogo;
+	@FindBy(xpath="//i[@class='ace-icon fa fa-power-off']")
+	private WebElement logoutbutton;
 	@FindBy(xpath="(//p[contains(text(),'Sub Category')]//following::a[1])[2]")
 	private WebElement subcategory;
+	
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -36,5 +37,11 @@ public class HomePage {
 	public void clickSubCategory()
 	{
 	subcategory.click();
+	}
+	
+	public void clickLogoutButton()
+	{
+		adminlogo.click();
+		logoutbutton.click();
 	}
 }
