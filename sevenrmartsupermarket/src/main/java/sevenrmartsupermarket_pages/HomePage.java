@@ -18,6 +18,8 @@ public class HomePage {
 	private WebElement logoutbutton;
 	@FindBy(xpath="(//p[contains(text(),'Sub Category')]//following::a[1])[2]")
 	private WebElement subcategory;
+	@FindBy(xpath="//a//i[@class='nav-icon fas fa-th-large']")
+	private WebElement dashboard;
 	
 
 	public HomePage(WebDriver driver) {
@@ -34,9 +36,16 @@ public class HomePage {
 		return logo.isDisplayed();
 	}
 	
-	public void clickSubCategory()
+	public SubcategoryPage clickSubCategory()
 	{
 	subcategory.click();
+	return new SubcategoryPage(driver);
+	}
+	
+	public DashBoardPage clickDashBoard()
+	{
+		dashboard.click();
+		return new DashBoardPage(driver);
 	}
 	
 	public void clickLogoutButton()

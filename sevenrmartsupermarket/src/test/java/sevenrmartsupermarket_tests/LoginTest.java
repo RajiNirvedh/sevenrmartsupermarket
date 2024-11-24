@@ -29,8 +29,8 @@ public class LoginTest extends Base {
 		excelreader.setExcelFile("LoginPageData", "SignInData");
 		String userNameData=excelreader.getCellData(0,1);
 		String passwordData=excelreader.getCellData(1,1);
-		homepage = new HomePage(driver);
 		loginpage = new LoginPage(driver);
+		homepage=new HomePage(driver);
 		loginpage.login(userNameData,passwordData);
 		String actualProfileName = homepage.getProfileName();
 		Assert.assertEquals(actualProfileName, "Password");
@@ -47,15 +47,11 @@ public class LoginTest extends Base {
 	@Test(dataProvider = "Login",dataProviderClass = Data_Provider.class)
 	public void verifyAlertMessageOfInvalidUserLogin(String username,String password)
 	{
-		homepage = new HomePage(driver);
 		loginpage = new LoginPage(driver);
 		loginpage.login(username, password);
 		String actualAlertMessage=loginpage.getAlertMessageOnInvalidLoginAtempt();
 		Assert.assertEquals(actualAlertMessage, "Alert!");
-		
-		
-		
-		
+	
 	}
 	
 	@Test

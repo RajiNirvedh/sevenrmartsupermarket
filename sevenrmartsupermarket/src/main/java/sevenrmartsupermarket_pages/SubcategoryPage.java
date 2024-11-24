@@ -118,6 +118,7 @@ public class SubcategoryPage {
 				boolean condition=generalutility.getTextOfElements(categorylisttable).get(i).contentEquals(subCategory);
 				if(condition==true)
 				{
+					i++;
 					WebElement updatebutton=driver.findElement(By.xpath("//tbody//tr["+i+"]//td[5]//a[1]"));
 					//pageutility.jsClick(updatebutton);
 					updatebutton.click();
@@ -126,7 +127,7 @@ public class SubcategoryPage {
 					addSubcategory.sendKeys(newSubCategory);
 					updateButton.click();
 				}
-				}
+		}
 				return updateAlert.getText();
 		}
 		
