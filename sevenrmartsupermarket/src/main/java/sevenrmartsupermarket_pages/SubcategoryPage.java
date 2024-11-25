@@ -1,8 +1,9 @@
 package sevenrmartsupermarket_pages;
 
 
+import java.io.FileInputStream;
 import java.util.List;
-
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,14 +11,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
+import sevenrmartsupermarket_constants.Constants;
 import sevenrmartsupermarket_utilities.GeneralUtility;
 import sevenrmartsupermarket_utilities.PageUtility;
 
 public class SubcategoryPage {
 	WebDriver driver;
+	Properties properties = new Properties();
 	GeneralUtility generalutility=new GeneralUtility();
-	
 	
 	@FindBy(xpath="//a[@onclick='click_button(2)']")
 	private WebElement serachicon;
@@ -33,6 +34,8 @@ public class SubcategoryPage {
 	private WebElement newButton;
 	@FindBy(xpath="//input[@placeholder='Enter the Subcategory']")
 	private WebElement addSubcategory;
+	@FindBy(xpath="//input[@id='main_img']")
+	private WebElement imagebutton;
 	@FindBy(xpath="//button[@type='submit']")
 	private WebElement saveButton;
 	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']//h5")
@@ -45,14 +48,14 @@ public class SubcategoryPage {
 	private WebElement updateButton;
 	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
 	private WebElement updateAlert;
+	
 
 
 	
 	public SubcategoryPage(WebDriver driver)
 	{
-		this.driver = driver;
+		this.driver=driver;
 		PageFactory.initElements(driver,this);
-
 	}
 	
 	public void clickOnSearchIcon()
@@ -100,13 +103,14 @@ public class SubcategoryPage {
 		addSubcategory.sendKeys(subCategorydata);
 	}
 	
-	public String addNewSubcategory(String category,String subCategorydata)
+	public void addNewSubcategory(String category,String subCategorydata)
 	{
 		newButton.click();
 		selectCategory(category);
 		enterNewSubCategory(subCategorydata);
+		imagebutton.sendKeys(Constants.IMAGE_FILE_PATH);
 		saveButton.click();
-		return saveAlert.getText();
+		//return saveAlert.getText();
 	}
 	
 	public String updateExistingSubcategory(String subCategory,String newSubCategory)

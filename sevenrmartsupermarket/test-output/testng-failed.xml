@@ -5,9 +5,9 @@
     <classes>
       <class name="sevenrmartsupermarket_tests.SubcategoryTest">
         <methods>
+          <include name="verifyaddingNewSubcategory" invocation-numbers="0 1"/>
           <include name="launchBrowser"/>
           <include name="launchBrowser"/>
-          <include name="verifySubCategoryListUsingSearchButton"/>
           <include name="terminateBrowser"/>
         </methods>
       </class> <!-- sevenrmartsupermarket_tests.SubcategoryTest -->

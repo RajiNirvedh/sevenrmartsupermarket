@@ -16,4 +16,11 @@ public class Data_Provider {
 		excelreader.setExcelFile("SubCategory","CategoryData");
 		return excelreader.getMultidimentionalData(2, 2);
 	}
+	
+	@DataProvider(name = "SubCategoryImages")
+	public Object[][] subcategoryimageuploading() {
+		excelreader.setExcelFile("SubCategory","CategoryData");
+		return excelreader.getMultidimentionalData(2, 2);
 }
+}
+
