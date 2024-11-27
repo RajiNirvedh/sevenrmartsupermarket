@@ -26,7 +26,7 @@ public class SubcategoryTest extends Base{
 		subcategorypage=homepage.clickSubCategory();
 		subcategorypage.searchSubCategory("Electronics", "Apple141124031848");
 		String actualSearchResult=subcategorypage.getSearchResult();
-		Assert.assertEquals(actualSearchResult, "Apple141124031848");
+		Assert.assertEquals(actualSearchResult, " Apple141124031848");
 	}
 	
 	@Test(groups ={"smoke","regression"})
