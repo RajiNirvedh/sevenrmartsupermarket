@@ -1,12 +1,17 @@
 package sevenrmartsupermarket_pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import sevenrmartsupermarket_utilities.GeneralUtility;
+
 public class HomePage {
 	WebDriver driver;
+	GeneralUtility generalutility=new GeneralUtility();
 	
 	@FindBy(xpath = "//a[@class='d-block']")
 	private WebElement profileName;
@@ -20,7 +25,18 @@ public class HomePage {
 	private WebElement subcategory;
 	@FindBy(xpath="//a//i[@class='nav-icon fas fa-th-large']")
 	private WebElement dashboard;
-	
+	@FindBy(xpath="//div[@class='col-lg-3 col-6'][8]//a[text()='More info ']")
+	private WebElement manageProduct;
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary'][text()=' Search']")
+	private WebElement productSearchButton;
+	@FindBy(xpath="//input[@placeholder='Title']")
+	private WebElement titleInput;
+	@FindBy(xpath="//input[@placeholder='Product Code']")
+	private WebElement productCodeInput;
+	@FindBy(xpath="//button[@name='Search']")
+	private WebElement searchButton;
+	@FindBy(xpath = "//table//tr//td[7]")
+	private WebElement productStatusdata;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -41,11 +57,31 @@ public class HomePage {
 	subcategory.click();
 	return new SubcategoryPage(driver);
 	}
-	
-	public DashBoardPage clickDashBoard()
+	public void clickManageProduct()
 	{
-		dashboard.click();
-		return new DashBoardPage(driver);
+		manageProduct.click();
+	
+	}
+	
+	public void clickProductSearchButton()
+	{
+		productSearchButton.click();
+	}
+	
+	public void productSearchWithTitle(String productTitle,CharSequence code)
+	{
+		clickManageProduct();
+		clickProductSearchButton();
+		titleInput.sendKeys(productTitle);
+		productCodeInput.sendKeys(code);
+		searchButton.click();
+		
+	}
+	
+	public String getProductStatus()
+	{
+		String productStatus=productStatusdata.getText();
+		return productStatus;
 	}
 	
 	public void clickLogoutButton()

@@ -47,9 +47,20 @@ public class SubcategoryTest extends Base{
 		loginpage=new LoginPage(driver);
 		homepage=loginpage.login("admin","admin");
 		subcategorypage=homepage.clickSubCategory();
-		subcategorypage.addNewSubcategory(subcategory,category);
-		//Assert.assertEquals(actualAlertText, "Alert!");
+		subcategorypage.addingNewSubcategorywithImage(subcategory,category);
+		String actualAlertText=subcategorypage.subCategoryAlert();
+		Assert.assertEquals(actualAlertText, "Alert!");
 		
+	}
+	
+	@Test(dataProvider="DeleteSubCategory",dataProviderClass=Data_Provider.class)
+	public void verifysubCategorydeletion(String subcategory)
+	{
+		loginpage=new LoginPage(driver);
+		homepage=loginpage.login("admin","admin");
+		subcategorypage=homepage.clickSubCategory();
+		String actualAlert=subcategorypage.deletingExistingSubcategory(subcategory);
+		Assert.assertEquals(actualAlert, "Alert!");
 	}
 	
 	@Test(groups="sanity")

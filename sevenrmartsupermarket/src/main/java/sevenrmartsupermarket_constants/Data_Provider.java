@@ -16,6 +16,11 @@ public class Data_Provider {
 		excelreader.setExcelFile("SubCategory","CategoryData");
 		return excelreader.getMultidimentionalData(2, 2);
 	}
+	@DataProvider(name = "DeleteSubCategory")
+	public Object[][] subcategorydeletingdata() {
+		excelreader.setExcelFile("DeleteSubCategory","SubCategoryData");
+		return excelreader.getMultidimentionalData(2, 1);
+	}
 	
 	@DataProvider(name = "SubCategoryImages")
 	public Object[][] subcategoryimageuploading() {

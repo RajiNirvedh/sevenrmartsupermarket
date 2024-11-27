@@ -48,8 +48,10 @@ public class SubcategoryPage {
 	private WebElement updateButton;
 	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
 	private WebElement updateAlert;
+	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
+	private WebElement deleteAlert;
 	
-
+////h5[contains(text(),' Alert!')]
 
 	
 	public SubcategoryPage(WebDriver driver)
@@ -103,15 +105,21 @@ public class SubcategoryPage {
 		addSubcategory.sendKeys(subCategorydata);
 	}
 	
-	public void addNewSubcategory(String category,String subCategorydata)
+	public void addingNewSubcategorywithImage(String category,String subCategorydata)
 	{
 		newButton.click();
 		selectCategory(category);
 		enterNewSubCategory(subCategorydata);
 		imagebutton.sendKeys(Constants.IMAGE_FILE_PATH);
 		saveButton.click();
-		//return saveAlert.getText();
 	}
+	
+	public String subCategoryAlert()
+	{
+		PageUtility pageutility=new PageUtility(driver);
+		return saveAlert.getText();
+	}
+	
 	
 	public String updateExistingSubcategory(String subCategory,String newSubCategory)
 	{
@@ -133,6 +141,26 @@ public class SubcategoryPage {
 				}
 		}
 				return updateAlert.getText();
+		}
+		
+	public String deletingExistingSubcategory(String subCategory)
+	{
+		PageUtility pageutility=new PageUtility(driver);
+		generalutility.getTextOfElements(categorylisttable);
+		int count=generalutility.getTextOfElements(categorylisttable).size();
+		for(int i=0;i<count;i++)
+		{
+				boolean condition=generalutility.getTextOfElements(categorylisttable).get(i).contentEquals(subCategory);
+				if(condition==true)
+				{
+					i++;
+					WebElement deletebutton=driver.findElement(By.xpath("//tbody//tr["+i+"]//td[5]//a[2]"));
+					deletebutton.click();
+					pageutility.acceptJsAlert();
+	
+				}
+		}
+				return deleteAlert.getText();
 		}
 		
 	

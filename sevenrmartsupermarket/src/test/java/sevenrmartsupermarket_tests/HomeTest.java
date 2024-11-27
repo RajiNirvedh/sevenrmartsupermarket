@@ -23,6 +23,15 @@ public class HomeTest extends Base{
 	}
 	
 	@Test
+	public void verifyWhetherUserAbleToSearchProductStatus()
+	{
+		loginpage = new LoginPage(driver);
+		homepage=loginpage.login("admin","admin");
+		homepage.productSearchWithTitle("Carrot", "615");
+		String actualStatus=homepage.getProductStatus();
+		Assert.assertEquals(actualStatus, "Active");
+	}
+	@Test
 	public void verifyUserIsSuccessfullyLoggedOutAndDirectedToLoginPage()
 	{
 		
