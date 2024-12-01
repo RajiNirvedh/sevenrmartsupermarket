@@ -58,7 +58,7 @@ public class Base {
 	public void launchBrowser() {
 		String browser = properties.getProperty("browser");
 		String url = properties.getProperty("url");
-		initialise(browser, url);// calling initialise method and assigning the values
+		initialise(browser, url);
 	}
 
 	@AfterMethod(alwaysRun = true)

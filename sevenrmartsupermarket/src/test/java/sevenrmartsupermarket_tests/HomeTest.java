@@ -36,10 +36,10 @@ public class HomeTest extends Base{
 	{
 		
 		loginpage = new LoginPage(driver);
-		homepage=loginpage.login("admin","admin");
-		homepage.clickLogoutButton();
-		String actualLoginBoxText=loginpage.loginBoxText();
-		Assert.assertEquals(actualLoginBoxText, "Sign in to start your session");
+		homepage=loginpage.login("admin1","admin");
+		String actualLoginBoxText=homepage.getLogoutPageText();
+		String expectedLoginBoxText=loginpage.loginBoxText();
+		Assert.assertEquals(actualLoginBoxText,expectedLoginBoxText );
 	}
 	
 

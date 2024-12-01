@@ -2,19 +2,19 @@
 	<listeners>
 		<listener class-name="sevenrmartsupermarket_listeners.ExtentReporter"></listener>
 	</listeners>
-	<test name="basicsmoketest">
+	<test name="smoketest">
 		<classes>
 			<class name="sevenrmartsupermarket_tests.HomeTest"></class>
 			<class name="sevenrmartsupermarket_tests.LoginTest"></class>
 		</classes>
 	</test>
-	<test name="smoketest">
+	<test name="sanitytest">
 		<classes>
 			<class name="sevenrmartsupermarket_tests.SubcategoryTest"></class>
 			<class name="sevenrmartsupermarket_tests.LoginTest"></class>
 		</classes>
 	</test>
-	<test name="smoke_test">
+	<test name="regressivetest">
 		<classes>
 			<class name="sevenrmartsupermarket_tests.HomeTest"></class>
 			<class name="sevenrmartsupermarket_tests.LoginTest"></class>

@@ -9,10 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import sevenrmartsupermarket_constants.Constants;
+import sevenrmartsupermarket_utilities.GeneralUtility;
 
 public class LoginPage {
 	WebDriver driver;
+	GeneralUtility generalutility=new GeneralUtility();
 	Properties properties = new Properties();
+	
 	@FindBy(xpath="//input[@placeholder='Username']")
 	private WebElement userNameField;
 	@FindBy(xpath="//input[@placeholder='Password']")
@@ -79,6 +82,10 @@ public class LoginPage {
 		return signinperson.getText();
 	
 	}
+	public String getLoginPageTitle()
+	{
+			return driver.getTitle() ;
+	}
 	
 	public String getAlertMessageOnInvalidLoginAtempt()
 	{
@@ -98,6 +105,7 @@ public class LoginPage {
 	
 	public String loginBoxText()
 	{
+
 		return loginBoxText.getText();
 		
 	}

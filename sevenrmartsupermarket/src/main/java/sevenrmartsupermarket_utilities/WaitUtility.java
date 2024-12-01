@@ -24,4 +24,11 @@ public class WaitUtility {
 		 wait.until(ExpectedConditions.elementToBeClickable(element));
 		 
 	}
+	
+	public void waitForVisibleText(WebElement element,long duration)
+	{
+		wait=new WebDriverWait(driver, Duration.ofSeconds(duration));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
 }
+

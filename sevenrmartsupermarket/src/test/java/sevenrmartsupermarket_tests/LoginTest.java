@@ -1,8 +1,5 @@
 package sevenrmartsupermarket_tests;
 
-import java.util.Properties;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +10,6 @@ import sevenrmartsupermarket_base.Base;
 import sevenrmartsupermarket_pages.HomePage;
 import sevenrmartsupermarket_pages.LoginPage;
 import sevenrmartsupermarket_utilities.ExcelReader;
-import sevenrmartsupermarket_utilities.ScreenshotCapture;
 
 public class LoginTest extends Base {
 	
@@ -66,8 +62,8 @@ public class LoginTest extends Base {
 	public void verifyApplicationTitle()
 	{
 		loginpage = new LoginPage(driver);
-		String actualText=loginpage.loginPageText();
-		Assert.assertEquals(actualText, "7rmart supermarket");
+		String actualTitle=loginpage.getLoginPageTitle();
+		Assert.assertEquals(actualTitle, "Login | 7rmart supermarket");
 	}
 
 }

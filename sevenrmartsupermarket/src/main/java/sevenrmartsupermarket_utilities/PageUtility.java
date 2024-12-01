@@ -1,15 +1,10 @@
 package sevenrmartsupermarket_utilities;
 
-import java.io.FileInputStream;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
-import sevenrmartsupermarket_constants.Constants;
 
 public class PageUtility {
 	WebDriver driver;
@@ -45,6 +40,9 @@ public class PageUtility {
 		js.executeScript("arguments[0].click();", element);
 	}
 
+	public void dismissJsAlert() {
+		driver.switchTo().alert().dismiss();
+	}
 	public void acceptJsAlert() {
 		driver.switchTo().alert().accept();
 	}
@@ -70,6 +68,13 @@ public class PageUtility {
 	{
 		WaitUtility waitutility=new WaitUtility(driver);
 		waitutility.waitForElementToBeClickable(element, 20);
+		element.click();
+	}
+	
+	public void waitForVisibleText(WebElement element)
+	{
+		WaitUtility waitutility=new WaitUtility(driver);
+		waitutility.waitForVisibleText(element, 20);
 		element.click();
 	}
 }
