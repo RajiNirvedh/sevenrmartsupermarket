@@ -1,11 +1,8 @@
 package sevenrmartsupermarket_pages;
 
 
-import java.io.FileInputStream;
-import java.util.List;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +25,8 @@ public class SubcategoryPage {
 	private WebElement subCategory;
 	@FindBy(xpath="//button[@class='btn btn-danger btn-fix']")
 	private WebElement searchButton;
+	@FindBy(xpath="//div[@class='col-sm-12']//a[2]")
+	private WebElement subCategorySearchButton;
 	@FindBy(xpath="//span[@id='res']//center")
 	private WebElement invalidsearchResult;
 	@FindBy(xpath="//a[@class='btn btn-rounded btn-danger']")
@@ -42,8 +41,10 @@ public class SubcategoryPage {
 	private WebElement saveAlert;
 	@FindBy(xpath="//span[contains(text(),'Active')]")
 	private WebElement activeIcon;
-	@FindBy(xpath="//tbody//tr//td[1]")
-	private List<WebElement> categorylisttable;
+	@FindBy (xpath="//table//tbody//tr//td[5]//a[1]")
+	private WebElement updateSelection;
+	@FindBy (xpath="//table//tbody//tr//td[5]//a[2]")
+	private WebElement deleteSelection;
 	@FindBy(xpath="//button[contains(text(),'Update')]")
 	private WebElement updateButton;
 	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
@@ -51,7 +52,7 @@ public class SubcategoryPage {
 	@FindBy(xpath="//h5[contains(text(),' Alert!')]")
 	private WebElement deleteAlert;
 	
-////h5[contains(text(),' Alert!')]
+
 
 	
 	public SubcategoryPage(WebDriver driver)
@@ -91,7 +92,7 @@ public class SubcategoryPage {
 	{
 		
 		return generalutility.getAttribute(subCategory, "value");
-		//return subCategory.getAttribute("value");
+		
 	}
 	
 	public String getInvalidSearchResult()
@@ -116,51 +117,31 @@ public class SubcategoryPage {
 	
 	public String subCategoryAlert()
 	{
-		PageUtility pageutility=new PageUtility(driver);
 		return saveAlert.getText();
 	}
 	
-	
-	public String updateExistingSubcategory(String subCategory,String newSubCategory)
+	public String subcategoryUpdateAlert()
 	{
-		generalutility.getTextOfElements(categorylisttable);
-		int count=generalutility.getTextOfElements(categorylisttable).size();
-		for(int i=0;i<count;i++)
-		{
-				boolean condition=generalutility.getTextOfElements(categorylisttable).get(i).contentEquals(subCategory);
-				if(condition==true)
-				{
-					i++;
-					WebElement updatebutton=driver.findElement(By.xpath("//tbody//tr["+i+"]//td[5]//a[1]"));
-					//pageutility.jsClick(updatebutton);
-					updatebutton.click();
-					addSubcategory.click();
-					addSubcategory.clear();
-					addSubcategory.sendKeys(newSubCategory);
-					updateButton.click();
-				}
-		}
-				return updateAlert.getText();
+		return updateAlert.getText();
+	}
+	public void updateExistingSubcategory(String subCategory,String newSubCategory)
+	{
+		subCategorySearchButton.click();
+		updateSelection.click();
+		addSubcategory.click();
+		addSubcategory.clear();
+	    addSubcategory.sendKeys(newSubCategory);
+	    updateButton.click();
+		
 		}
 		
 	public String deletingExistingSubcategory(String subCategory)
 	{
 		PageUtility pageutility=new PageUtility(driver);
-		generalutility.getTextOfElements(categorylisttable);
-		int count=generalutility.getTextOfElements(categorylisttable).size();
-		for(int i=0;i<count;i++)
-		{
-				boolean condition=generalutility.getTextOfElements(categorylisttable).get(i).contentEquals(subCategory);
-				if(condition==true)
-				{
-					i++;
-					WebElement deletebutton=driver.findElement(By.xpath("//tbody//tr["+i+"]//td[5]//a[2]"));
-					deletebutton.click();
-					pageutility.acceptJsAlert();
-	
-				}
-		}
-				return deleteAlert.getText();
+		subCategorySearchButton.click();
+		deleteSelection.click();
+		pageutility.acceptJsAlert();		
+		return deleteAlert.getText();
 		}
 		
 	

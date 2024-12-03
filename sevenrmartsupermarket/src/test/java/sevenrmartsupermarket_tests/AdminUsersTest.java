@@ -13,7 +13,7 @@ public class AdminUsersTest extends Base {
 	LoginPage loginpage;
 	AdminUsersPage adminuserspage;
 	
-	@Test
+	@Test(groups="smoke")
 	public void verifyAlertMessageForDeletingUserDetails()
 	{
 		loginpage = new LoginPage(driver);

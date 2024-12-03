@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,6 +17,7 @@ public class LoginPage {
 	GeneralUtility generalutility=new GeneralUtility();
 	Properties properties = new Properties();
 	
+	@CacheLookup
 	@FindBy(xpath="//input[@placeholder='Username']")
 	private WebElement userNameField;
 	@FindBy(xpath="//input[@placeholder='Password']")
@@ -39,7 +41,7 @@ public class LoginPage {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
 		try {
-			FileInputStream ip = new FileInputStream(Constants.CONFIG_FILE_PATH);// to read file
+			FileInputStream ip = new FileInputStream(Constants.CONFIG_FILE_PATH);
 			properties.load(ip);
 		} catch (Exception e) {
 			e.printStackTrace();

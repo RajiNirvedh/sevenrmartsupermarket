@@ -79,7 +79,8 @@ public class SubcategoryTest extends Base{
 		loginpage=new LoginPage(driver);
 		homepage=loginpage.login("admin","admin");
 		subcategorypage=homepage.clickSubCategory();
-		String actualAlert=subcategorypage.updateExistingSubcategory("Lester","peas2");
+		subcategorypage.updateExistingSubcategory("Jana","Broccoli");
+		String actualAlert=subcategorypage.subcategoryUpdateAlert();
 		Assert.assertEquals(actualAlert, "Alert!");
 	}
 	

@@ -32,7 +32,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(actualProfileName, "Password");
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void VerifySignInButtonIsEnabled()
 	{
 		loginpage = new LoginPage(driver);
@@ -47,10 +47,9 @@ public class LoginTest extends Base {
 		loginpage.login(username, password);
 		String actualAlertMessage=loginpage.getAlertMessageOnInvalidLoginAtempt();
 		Assert.assertEquals(actualAlertMessage, "Alert!");
-	
 	}
 	
-	@Test
+	@Test(priority=3)
 	public void verifyRememberMeCheckBoxIsEnabled()
 	{
 		loginpage = new LoginPage(driver);
@@ -58,7 +57,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(actualResult, true);
 	}
 	
-	@Test
+	@Test(priority=2)
 	public void verifyApplicationTitle()
 	{
 		loginpage = new LoginPage(driver);
